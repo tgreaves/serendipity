@@ -1,0 +1,328 @@
+@database Serendipity.guide
+## HyperText guide for Serendipity
+## Written by Tristan Greaves / Perception
+## Change the tool type of this icon to an Amigaguide viewer if you have
+## one available, as this will make this document look its best. Workbench 3
+## owners should set the tool type to SYS:UTILITIES/MULTIVIEW.
+@width 77
+
+@Node Main "Serendipity"
+
+                          ** S E R E N D I P I T Y **
+
+               Coding  ..... Tristan Greaves (AKA Mercenary)
+               Music   ..... John T.B Brons  (AKA Funky John)
+                             Jake Ridley     (AKA Jake Speed/Indy)
+               Artwork ..... Schism
+
+****************************************************************************
+
+                          @{"    About Serendipity    " Link About}
+                          @{"       Requirements      " Link Requirements}
+                          @{"          Loading        " Link Loading}
+                          @{" Hard Drive Installation " Link HD}
+                          @{"          Errors         " Link Errors}
+                          @{"    Technical Details    " Link Tech}
+                          @{"  Contacting Perception  " Link Contact}
+                          @{"         Messages        " Link Messages}
+
+                               © 1994 Perception
+@EndNode
+
+@Node About "About Serendipity"
+
+Serendipity is the second major release from Perception. It is a simple
+music disk which contains six tunes: Three by Funky John of Perception
+and three by Jake Speed, who is independent and wanted his work to be
+spread.
+
+Serendipity is fully system legal and multitasking, and should therefore
+run on ALL Amigas: Past, present and future! If any errors occur they
+will be reported and the program will exit cleanly returning all memory
+and resources. This is certainly different to some other scene productions
+which just crash with no indication of what the problem is!
+
+Admittedly, Serendipity is rather a simple production. It is only my second
+bit of assembly coding for the group so please bear with me. However, the
+main thing is the music, and I hope you like it!
+
+                                                -- Tristan Greaves --
+                                                   (Mercenary/PCT)
+
+(Our first release was Fission Chips, which featured eighteen chip tunes
+compressed into a 70k file. It is available now, so make sure you get hold
+of a copy!)
+@EndNode
+
+@Node Requirements "Requirements"
+
+                               Requirements
+                               ------------
+
+Serendipity requires at least 600k of free Chip memory to run. This much
+memory is needed due to the large size of the modules in use.
+
+I did my best to try and get this production to run on a machine with
+only half a megabyte of Chip memory, but failed. Even after forcing 
+Powerpacker to decrunch the modules to Fast memory (Which stopped its buffer
+from taking up Chip memory), and then copying them into Chip, the larger
+modules would not play.
+
+I could have made Serendipity run but not play the larger modules on a
+half meg Chip machine, but this would make the production incomplete. 
+Reducing the number of colours in the graphics would save memory, but would
+reduce the quality of them for users with 600k+ Chip memory.
+
+It may be possible to play the larger modules if you uncrunch them using
+Powerpacker and use a separate player. Use a player that doesn't open its
+own screen or you might run out of Chip memory. The modules are stored in
+Octamed's four channel format. I would recommend using OctaMedPlayer to
+play them.
+@EndNode
+
+@Node Loading "Loading"
+
+                                  Loading
+                                  -------
+
+Serendipity can loaded from either the CLI or from workbench.
+
+FROM THE CLI:        Type SERENDIPITY and press [RETURN]
+FROM THE WORKBENCH:  Double click on the icon.
+
+Serendipity will happily multitask with any other programs that are running,
+but it will take full control of the sound channels. To exit the production
+click in the top left hand corner of the screen.
+
+If an error occurs it will be reported. See the @{"Errors" Link Errors} section.
+@EndNode
+
+@Node "HD" "Hard Drive Installation"
+
+                           Hard Drive Installation
+                           -----------------------
+
+Serendipity can easily be installed to a hard drive. Copy the main
+program ("Serendipity") and the music modules (Which begin with "mod.") to
+any directory on your hard drive. Be sure to copy the Powerpacker library
+to the LIBS: directory.
+
+The above can be achieved by entering the following CLI commands after
+booting from your hard drive:
+
+   COPY SERENDIPITY:SERENDIPITY#? SYS:SERENDIPITY
+   COPY SERENDIPITY:MOD.#? SYS:SERENDIPITY
+   COPY SERENDIPITY:LIBS/POWERPACKER.LIBRARY LIBS:
+   
+An assignment has to be made to allow the program to locate the music
+modules. Add the following command to your startup-sequence:
+
+   ASSIGN SERENDIPITY: SYS:SERENDIPITY
+   
+Obviously you can replace SYS:SERENDIPITY with the path name of where
+you want to install the production.
+@EndNode
+
+@Node Errors "Errors"
+
+                                 Errors
+                                 ------
+
+Serendipity features a fully implemented error trapping system. Any errors
+that occur will be reported without the program crashing. The following
+errors can be reported:
+
+"Serendipity requires at least 600k of free Chip memory to run."
+
+Free up as much Chip memory as possible by closing down other programs.
+If the problem persists disconnect peripherals such as external disk
+drives to free up more memory. Reset your Amiga in order to get rid of
+memory fragmentation.
+
+"Could not open Intuition library."
+
+This should NEVER happen. The Intuition library is integral to ALL Amiga
+computers. Serendipity will work with all versions of Intuition, including
+the archaic Kickstart 1.2!
+
+"Could not open Graphics library."
+
+This should NEVER happen. Like Intuition, this library is part of the Amiga
+Operating System. If any of the above two errors do occur it could be due
+to a fault with your Amiga.
+
+"Could not open Powerpacker library."
+
+Serendipity requires the file "Powerpacker.library" to be in your LIBS:
+directory. If you have installed this production to your hard drive and
+get this error it is probably because you have forgotten to install this
+library.
+
+"Could not open music resources."
+
+Serendipity requires full control of the Amiga's sound system in order to
+play the music modules. Make sure that no other programs are using these
+resources before loading Serendipity. 
+
+"Could not open music module."
+
+The selected music module could not be located. If you have installed
+Serendipity to your hard drive make sure you have used the ASSIGN command
+correctly (See @{"Hard Drive Installation" Link HD}).
+
+"Error while reading music module."
+
+This is most likely to be caused by a read/write error on the disk (Which
+would be reported separately by the Amiga). Replace the music module with
+a working version.
+
+"Insufficient memory to load music module."
+
+Serendipity needs plenty of Chip RAM in order to load and decrunch each
+module, as some of them are bigger than 200k. Free as much memory as
+possible by closing down other programs. If the problem persists reset
+your Amiga in order to get rid of memory fragmentation. Remember that
+Serendipity requires a minimum of 600k Chip RAM in order to run.
+
+"Music module has been encrypted. Unable to load."
+
+For some bizarre reason the selected music module has been encrypted with
+a password using Powerpacker. Serendipity does not support encrypted
+music modules.
+
+"Music module crunched with an unsupported version of Powerpacker."
+
+The version of the Powerpacker library that you are using is too old to
+cope with the crunched music modules. Replace it with a newer one. The
+version on the distribution disk will easily suffice.
+
+"Music module is an empty file. Unable to load."
+
+The selected music module has been seriously corrupted. Replace it with
+a working version.
+
+@EndNode
+
+@Node Tech "Technical Details"
+
+                              Technical Details
+                              -----------------
+
+Code information:
+
+   Source code: 3782 lines and 99,107 bytes long.
+
+   Final executable:
+
+   UNPACKED (Including debug/symbol hunks) ...... 130,347 bytes
+   PACKED .......................................  38,248 bytes
+
+   Created with Devpac Amiga 3.04.
+   Assembled on an unexpanded Amiga 1200.
+
+Artwork information:
+
+   PICTURE    COLOURS    SIZE (IFF)      SIZE (BITMAP)    ARTIST
+   Menu         32       29,748 bytes    51,200 bytes     Schism
+   Readme       32       19,256 bytes    51,200 bytes     Schism
+
+Music information:
+
+   MODULE            SIZE (UNPACKED)   SIZE (PACKED)   COMPOSER
+   Oppertune         212,354 bytes     162,652 bytes   Jake Speed/Indy
+   Rellowmush        265,198 bytes     221,300 bytes   Jake Speed/Indy
+   Septic Child       79,800 bytes      55,660 bytes   Funky John
+   Spacetrip 3       222,784 bytes     178,240 bytes   Jake Speed/Indy
+   Tangled In Reins   79,496 bytes      47,692 bytes   Funky John
+   Technic Dreams    121,580 bytes      94,216 bytes   Funky John
+
+   All music stored in the OctaMED module format.
+
+All crunching carried out with Powerpacker Professional 4 on BEST.
+@EndNode
+
+@Node Contact "Contacting Perception"
+
+              Feel free to contact Perception for any reason
+
+                               MERCENARY
+                               15 Little Mead
+                               Denmead
+                               Hampshire
+                               PO7 6HS
+                               ENGLAND
+
+                        (Enclose SAE for a reply)
+
+                          Tel: +44 (0)705 258840
+
+                     We can also be reached on our BBS
+
+                                 E . I . S
+
+                 * Running on a PC 486/50 (16 Megs)
+                 * Running with Wildcat multi-line BBS software.
+                 * 3 gigabytes of storage space.
+                 * 2 CD ROM players.
+                 * Wildnet E-Mail from the USA every day.
+                 * QWK off-line mail reading available.
+                 * Destiny, Mad Elks and Perception file areas.
+                 * On-line games.
+                 * Multi-line chats.
+                 * On-line 24 hours a day!
+
+             Line 1  +44 (0)81-952-7719   300/1200/2400/HST
+             Line 2  +44 (0)81-951-5212   2400/9600/14400/HST
+             Line 3  +44 (0)81-951-5849   2400/9600/14400
+             Line 4  +44 (0)81-PRI-VATE   2400/9600/14400/16800
+
+                      Leave mail to TRISTAN GREAVES
+@EndNode
+
+@Node Messages "Messages"
+
+                                  Messages
+                                  --------
+
+Mercenary sends greetings to the following:
+
+Apache64/KKI, Aquamarine, Benson/Panacea, John Davis, DeVOE/Cybertek,
+Dynamite, Eldar/Dual Format, Freeman/Lard Design, Haze/Sharp, Headhunter,
+Adrian Huck/Freebooters, Lord Lazy, Mushypea, Simple Simon/Destiny,
+Striker/Venator, Tantalus/Anthrox, Lee Walder, and all the other members of
+Perception!
+
+Schism sends greetings to the following:
+
+Anti-Christ/Nebula, Eddie Barry, Cyborg/Radiance, Dazl/Iris UK, Gears/Zircon,
+IKB/GBH, Insomniak/Redline, Lamphray/Radiance, Overdose/Iris UK, Radar/PAC,
+Read-Only/Dataclan, Slush/Delta Nine, Swish/Mustang, Wizzdohm/Dataclan, and
+the rest of Perception.
+
+Funky John sends greetings to the following:
+
+CoolHead, Count Mil, Dr. Delete, Dunk, Rudy B. Van Etten/Crom Designs,
+Freeman/Lard Design (Nice to hear from you), all Illusion members, Ulf
+Karlsson, Law N' Order, Mace, Panther/LSD (Yo Marc, please send now), Pets
+band (Still alive? Sorry for everything man), Jani Miettinen, all Perception
+members, Mike the Revolution (Keep up. Please write back again), Aki and
+Arie Niinistö, Scorpion, all Straight members, Star Trek, Rob and Marcel
+Sucisso d.l.d.p, UGA Software, Zhanna (I really love you, can't wait to see
+you), and all I forgot.
+
+****************************************************************************
+
+Jake Speed is looking for a graphics artist in Hampshire. He can be
+contacted at the following address:
+
+JAKE RIDLEY
+Saltham House
+Runcton
+Chichester
+West Sussex
+PO20 6LJ
+
+Tel: (0243) 536033
+
+****************************************************************************
+@EndNode
